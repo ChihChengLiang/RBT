@@ -1,0 +1,74 @@
+# Generate classes
+
+The purpose of this project is to generate exam scores of a fake school. We will do this in a bottom up approach, that is, geneate a student's score, a class, then, a school.
+
+## Basic setting
+
+```{r basic_setting}
+#Aboout School
+Grades=7
+ClassesPerGrade=20
+AvgStudentPerClass=30
+subjects=c("Astronomy","Charms","Defence Against the Dark Arts","Flying","Herbology","History of Magic","Potions","Transfiguration")
+
+# About Student
+giftLevel=5 # Assume each student has 5 different gift in each subject
+```
+
+
+## Generate a student
+
+```{r single_student_example}
+library(randomNames)
+library(truncnorm)
+name=randomNames()
+talentForSubjects=round(runif(length(subjects),min=1, max=giftLevel))
+avgScore=talentForSubjects*100/giftLevel
+sdScore=1/talentForSubjects*20
+scores=rtruncnorm(length(subjects), a=0, b=100, mean =avgScore , sd =sdScore )
+scores=round(scores,2)
+df=data.frame(t(c(name, scores)))
+colnames(df)=c("name",subjects)
+print(name)
+print(talentForSubjects)
+print(scores)
+```
+```{r student_function}
+generateStudentScore=function(x){
+  # the input argument x is dummy
+  name=randomNames()
+  talentForSubjects=round(runif(length(subjects),min=1, max=giftLevel))
+  avgScore=talentForSubjects*100/giftLevel
+  sdScore=1/talentForSubjects*20
+  scores=rtruncnorm(length(subjects), a=0, b=100, mean =avgScore , sd =sdScore )
+  scores=round(scores,2)
+  df=data.frame(t(c(name, scores)))
+  colnames(df)=c("name",subjects)
+  return(df) 
+}
+generateStudentScore()
+```
+
+## Now deal with the class
+
+```{r class_example}
+students=round(runif(1,max=AvgStudentPerClass+5, min=AvgStudentPerClass-5))
+dummyx=c(1:students)
+df=do.call(rbind,lapply(dummyx,generateStudentScore))
+head(df)
+```
+
+## Generate all School's data
+
+This might take a while, so the block is not evaluated automatically
+```{r eval=FALSE}
+for(g in 1:Grades){
+  for(c in 1:ClassesPerGrade){
+    students=round(runif(1,max=AvgStudentPerClass+5, min=AvgStudentPerClass-5))
+    dummyx=c(1:students)
+    df=do.call(rbind,lapply(dummyx,generateStudentScore))
+    write.csv(df,paste("data/g",g,"c",sprintf("%03d",c),".csv",sep=""),row.names=FALSE)
+  }
+}
+
+```
