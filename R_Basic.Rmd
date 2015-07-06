@@ -1,38 +1,57 @@
-# R基礎指令小專案
+# R基礎指令小專案 Basic R Commands Project
 
-## 學習目標
+請使用git clone取得 https://github.com/ChihChengLiang/RBT
+
+To play with this project, please clone the git repo at [https://github.com/ChihChengLiang/RBT](https://github.com/ChihChengLiang/RBT) .
+
+## 學習目標 Learning Objective
 在這個過程中，您將學會如何使用R的基本操作來達成人工繁瑣的工作。
 
-## 專案說明
+You'll learn how to use basic R commands to complete a repetitive work.
+
+## 專案說明 Instruction
 在這個專案中，您是某間知名學校的職員。學校剛創立不久，同事們都很希望知道學生的表現如何。於是，您向全校的導師取得每班學生的成績單。在這個小專案中，您將完成下列事項。
 
 - 讀取檔案
 - 讀取大量檔案
 - 從檔案中取得簡單的統計資訊
 
-## 前置作業
+You are a staff of a famous, recently founded school. Teachers of the school are eager to know students' performance. Thus, you obtained files of students' scores and have to complete the following tasks.
+
+- Read a file.
+- Read a lot of files.
+- Extract simple statistical information from files.
+
+## 前置作業 Getting Started
 
 > 如果你是在`RStudio`中以`.Rmd`格式開啟本檔案，請按`Chunks > Run Current Chunk`即可執行下列程式碼。
+
+> If you open this file in `.Rmd` format in `RStudio`, run the code by clicking `Chunks > Run Current Chunk`
 
 ```{r}
 source("tester.R")
 ```
 
 
-# 驚鴻一瞥
+# 驚鴻一瞥 Just A Peek
+
 取得的成績單，皆以csv格式存放在`data`資料夾底下。命名的規則是「g年級c班」。例如：三年五班的成績單，檔名即是`g3c005.csv`
 
-
+The obtained scores are stored in `data` directory in csv format. The rule of file name is `g(grade)c(classroom).csv`. For example, the students' scores of 5th classroom, 3rd grade is named `g3c005.csv`.
 
 ```{r}
-list.files("data") #這行指令可以列出檔案夾內的所有檔案
+list.files("data") #這行指令可以列出檔案夾內的所有檔案 list all files within the directory.
 ```
 
 暈了，百來個檔案！您看了一看東方的魚肚白、聽一聽周遭的鳥鳴聲，心中暗道：「只有一些電腦魔法能夠拯救我」。
 
-## 投石問路
+Oops, hundreds of files. You looked out the window for the rising sun, hearing the birds twittering for their breakfast. It's another sleep deprived night. It's too brutal to deal with these files one by one with copy and paste approach, you are outnumbered. "Only some computer magics can save me," said yourself.
+
+## 投石問路 A Closer Look
 
 也許您會好奇成績單到底長怎樣
+
+You might wonder how the content of a file of students' scores looks like.
 
 ```{r}
 ```
